@@ -15,7 +15,6 @@ def adatbeolv():
     return urhajosok
 
 
-
 def main():
     urhajos_adatok = adatbeolv()
     honapok_gyakorisaga = []
