@@ -15,42 +15,45 @@ def adatbeolv():
     return urhajosok
 
 
-def main():
-    urhajos_adatok = adatbeolv()
+def sorszam(honapok_gyakorisaga, leggyakoribb_ertek):
+    index = 0
+    leggyakoribb_sorszam = 0
+    for elem in honapok_gyakorisaga:
+        if elem == leggyakoribb_ertek:
+            leggyakoribb_sorszam = index
+        index += 1
+    return leggyakoribb_sorszam
+
+
+def honapok(urhajos_adatok):
     honapok_gyakorisaga = []
     for _ in range(12):
         honapok_gyakorisaga.append(0)
     for elem in urhajos_adatok:
         adat = elem['Birth Date'].split('/')
-        honapok_gyakorisaga[int(adat[0])-1] += 1
+        honapok_gyakorisaga[int(adat[0]) - 1] += 1
     osszes = len(urhajos_adatok)
 
     seged_lista = []
     for elem in honapok_gyakorisaga:
         seged_lista.append(elem)
-
     elso_leggyakoribb_ertek = max(seged_lista)
     seged_lista.remove(elso_leggyakoribb_ertek)
     masodik_leggyakoribb_ertek = max(seged_lista)
     seged_lista.remove(masodik_leggyakoribb_ertek)
     harmadik_leggyakoribb_ertek = max(seged_lista)
-    index = 0
-    elso_leggyakoribb_sorszam = 0
-    masodik_leggyakoribb_sorszam = 0
-    harmadik_leggyakoribb_sorszam = 0
-    for elem in honapok_gyakorisaga:
-        if elem == elso_leggyakoribb_ertek:
-            elso_leggyakoribb_sorszam = index
-        if elem == masodik_leggyakoribb_ertek:
-            masodik_leggyakoribb_sorszam = index
-        if elem == harmadik_leggyakoribb_ertek:
-            harmadik_leggyakoribb_sorszam = index
-        index += 1
+
+    elso_leggyakoribb_sorszam = sorszam(honapok_gyakorisaga, elso_leggyakoribb_ertek)
+    masodik_leggyakoribb_sorszam = sorszam(honapok_gyakorisaga, masodik_leggyakoribb_ertek)
+    harmadik_leggyakoribb_sorszam = sorszam(honapok_gyakorisaga, harmadik_leggyakoribb_ertek)
+
+    print(f'{harmadik_leggyakoribb_sorszam + 1}.honap : {round((harmadik_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
+          f'{masodik_leggyakoribb_sorszam + 1}.honap : {round((masodik_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
+          f'{elso_leggyakoribb_sorszam + 1}.honap : {round((elso_leggyakoribb_ertek / osszes) * 100, 1)}%')
 
 
-    print(f'{harmadik_leggyakoribb_sorszam + 1}.honap : {round((harmadik_leggyakoribb_ertek/osszes)*100, 1)}%\n'
-          f'{masodik_leggyakoribb_sorszam + 1}.honap : {round((masodik_leggyakoribb_ertek/osszes)*100, 1)}%\n'
-          f'{elso_leggyakoribb_sorszam + 1}.honap : {round((elso_leggyakoribb_ertek/osszes)*100, 1)}%')
+def main():
+    honapok(adatbeolv())
 
 
 main()
