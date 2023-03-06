@@ -47,9 +47,9 @@ def honapok(urhajos_adatok):
     masodik_leggyakoribb_sorszam = sorszam(honapok_gyakorisaga, masodik_leggyakoribb_ertek)
     harmadik_leggyakoribb_sorszam = sorszam(honapok_gyakorisaga, harmadik_leggyakoribb_ertek)
 
-    print(f'{harmadik_leggyakoribb_sorszam + 1}.honap : {round((harmadik_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
-          f'{masodik_leggyakoribb_sorszam + 1}.honap : {round((masodik_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
-          f'{elso_leggyakoribb_sorszam + 1}.honap : {round((elso_leggyakoribb_ertek / osszes) * 100, 1)}%')
+    print(f'{elso_leggyakoribb_sorszam + 1}.honap: {round((elso_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
+          f'{masodik_leggyakoribb_sorszam + 1}.honap: {round((masodik_leggyakoribb_ertek / osszes) * 100, 1)}%\n'
+          f'{harmadik_leggyakoribb_sorszam + 1}.honap: {round((harmadik_leggyakoribb_ertek / osszes) * 100, 1)}%')
 
 
 def main():
